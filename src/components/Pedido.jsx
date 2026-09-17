@@ -22,7 +22,7 @@ const Pedido = () => {
     //função que altera a quantidade do pedido
     const AlterarQuantidade=(id,valor)=>{
         setItems(prev=>
-            //map percorre a lista para criar um novo array sem modificar o original 
+            //MAP percorre a lista para criar um novo array sem modificar o original 
             prev.map(item=>
                 //ternário verifica se o item da interação atual é o que deve ser alterado
                 //spred(...) : adiciona o item a lista atual ou modifica 
@@ -32,6 +32,14 @@ const Pedido = () => {
             )
         )
     }
+
+    //FILTER: seleciona apenas os produtos disponiveis e do carrinho
+    const produtosDisponiveis = items.filter(item.disponivel);
+    const carrinho = items.filter(item.quantidade >0);
+
+    //REDUCE: calcula a soma dos items (preco * quantidade) e adiciona a taxa de entrega
+    const subTotal = carrinho.reduce((ac,item)=>ac.item.preco * item.quantidade)
+    const total = subTotal > 0 ? subTotal + taxaEntrega: 0;
 
   return (
     <>
